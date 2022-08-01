@@ -1,0 +1,35 @@
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[1]/td[5] - kainos stulpelis
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[1]/td[3] - adreso stulpelis
+
+
+kainose keiciasi tik tr[], tai galima tr[index] ir index keiciasi while
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[index]/td[5]
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[2]/td[5]
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[3]/td[5]
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[4]/td[5]
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[5]/td[5]
+
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[6]/td[5]
+while baigiasi kai kintamasis yra nebe skaicius, bet bruksnys
+
+deklaruoti kintamai temp= 99999. Lyginti kainas su temp ir ieskoti maziausios reiksmes.
+
+Adresai
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[index]/td[3]
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[2]/td[3]
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[3]/td[3]
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[4]/td[3]
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[5]/td[3]
+/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[6]/td[3]
+
+index=2
+priceMin = 9999
+indexMin = 9999
+price = xpath<...>tr[index][5]
+   while price !== "-"
+     	if price < priceMin:
+		priceMin = price
+		indexMin = index
+	index++
+	price = xpath<...>tr[index][5]
+

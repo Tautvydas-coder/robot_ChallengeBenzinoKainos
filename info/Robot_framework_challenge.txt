@@ -1,0 +1,16 @@
+First of all -what do you know about Katalon Recorder which is recording the web test cases? The main goal - the quest:
+
+Install the Katalon recorder in to your chrome browser (if it is not yet) -
+https://chrome.google.com/webstore/detail/katalon-recorder-selenium/ljdobmomdgdljniojadhoplhkpialdid/related?hl=ru
+
+
+Sign in to the Katalon () if not yet done
+
+
+Start the Recording in the Katalon and create the script with the previous quest links
+
+
+Save the script to the RobotFramework extension script
+
+
+test the exported script with the Robot
