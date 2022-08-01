@@ -3,46 +3,56 @@ Library  SeleniumLibrary
 
 *** Variables ***
 ${BROWSER}   chrome
-${SELSPEED}  6.0s
-
+${NEW_TAB}  chrome://newtab/
+${SELSPEED}  1.5s
+${CITY}  Vilnius
+${MAX_window}  Maximize Browser Window
+${INDEX}  2
+${minValue}  9999
+${minIndex}  9999
+${PRICE}  0
+${ADDRESS}
+${EMAIL_NAME}  work.selenium@gmail.com
 *** Test Cases ***
 robotframework-testing_selenium
     [Setup]  Run Keywords  Open Browser  http://www.degalukainos.lt/  ${BROWSER}
-    ...              AND   Set Selenium Speed  ${SELSPEED}
-#    open    http://www.degalukainos.lt/
+    ...              AND   Set Selenium Speed  ${SELSPEED}  AND  ${MAX_window}
     click    id=city
-    select    xpath=/html/body/div[20]/div/div/div/div[1]/div[3]/div[1]/div[1]/div/div/div/div[3]/div/div/div[4]/table/tbody/tr/td[2]/table/tbody/tr[1]/td/div/div[1]/div[2]/div[1]/div/table/tbody/tr/td[2]/div[2]/div  Vilnius
-    #select   id=city
+    Select From List By Label  id=city  ${CITY}
     click    xpath=//input[@value='Ieškoti']
-    store    2    index
-    store    9999    minValue
-    store    9999    minIndex
-    storeText    xpath=/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[${index}]/td[5]    price
-    while    ${price}!== "-"
-    if    ${price}<${minValue}
-    store    ${price}    minValue
-    store    ${index}    minIndex
-    endif
-    storeEval    ${index}+1    index
-    storeText    xpath=/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[${index}]/td[5]    price
-    storeText    xpath=/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[${minIndex}]/td[3]    address
-    open    chrome://newtab/
+    ${PRICE}=  storeText    xpath=/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[${INDEX}]/td[5]    ${PRICE}
+    WHILE  "${PRICE}"!="-"
+        IF    ${PRICE} < ${minValue}
+            ${minValue}=  store  ${minValue}  ${PRICE}
+            ${minIndex}=  store  ${minIndex}  ${INDEX}
+        END
+        ${INDEX}=  Evaluate  ${INDEX} + 1
+        ${PRICE}=  storeText    xpath=/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[${INDEX}]/td[5]    ${PRICE}
+        ${ADDRESS}=  storeText    xpath=/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[${minIndex}]/td[3]    ${ADDRESS}
+    END
+    open    ${NEW_TAB}
     open    https://accounts.google.com/ServiceLogin?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service%27%27=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin
-    waitForPageToLoad    3
+    Sleep    3
     click    id=identifierId
-    type    id=identifierId    work.selenium@gmail.com
-    click    xpath=//div[@id='identifierNext']/div/button/span
-    click    xpath=/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]
-    type    xpath=//*[@id="password"]/div[1]/div/div[1]/input    Selenium1]
-    click    xpath=//*[@id="passwordNext"]
-    click    xpath=/html[1]/body[1]/div[7]/div[3]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]
-    type    xpath=/html/body/div[17]/div/div/div/div[1]/div[3]/div[1]/div[1]/div/div/div/div[3]/div/div/div[4]/table/tbody/tr/td[2]/form/div[1]/table/tbody/tr[1]/td[2]/div/div/textarea    work.selenium@gmail.com
-    mouseMove    xpath=/html/body/div[17]/div/div/div/div[1]/div[3]/div[1]/div[1]/div/div/div/div[3]/div/div/div[4]/table/tbody/tr/td[2]/table/tbody/tr[1]/td/div/div[1]/div[2]/div[1]/div/table
-    click    xpath=/html/body/div[17]/div/div/div/div[1]/div[3]/div[1]/div[1]/div/div/div/div[3]/div/div/div[4]/table/tbody/tr/td[2]/table/tbody/tr[1]/td/div/div[1]/div[2]/div[1]/div/table
-    editContent    xpath=/html/body/div[17]/div/div/div/div[1]/div[3]/div[1]/div[1]/div/div/div/div[3]/div/div/div[4]/table/tbody/tr/td[2]/table/tbody/tr[1]/td/div/div[1]/div[2]/div[1]/div/table/tbody/tr/td[2]/div[2]/div    Address ${address}, Price ${price}
-    mouseMove    xpath=/html/body/div[17]/div/div/div/div[1]/div[3]/div[1]/div[1]/div/div/div/div[3]/div/div/div[4]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/div/div/div[4]/table/tbody/tr/td[1]/div/div[2]/div[1]
-    click    xpath=/html/body/div[17]/div/div/div/div[1]/div[3]/div[1]/div[1]/div/div/div/div[3]/div/div/div[4]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/div/div/div[4]/table/tbody/tr/td[1]/div/div[2]/div[1]
-    [Teardown]  Close Browser
+    type    id=identifierId    ${EMAIL_NAME}
+    click    xpath://div[@id='identifierNext']/div/button/span
+    Sleep    3
+    click    xpath:/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]
+    type    xpath://*[@id="password"]/div[1]/div/div[1]/input    Selenium1]
+    click    xpath://*[@id="passwordNext"]
+    click    xpath:/html[1]/body[1]/div[7]/div[3]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]
+    Sleep    2
+    click   class:eV
+    Press Keys  class:eV  ${EMAIL_NAME}
+    Sleep    2
+    Mouse Over  xpath:/html/body/div[7]/div[3]/div/div[1]/div[3]/header/div[2]/div[2]/div[2]
+    Click  xpath:/html/body/div[7]/div[3]/div/div[1]/div[3]/header/div[2]/div[2]/div[2]
+    Mouse Over    css:div[aria-label='Pranešimo turinys']
+    Click Element    css:div[aria-label='Pranešimo turinys']
+    Press Keys  css:div[aria-label='Pranešimo turinys']    ${ADDRESS}, ${minValue}
+    Mouse Over    xpath://div[@aria-label='Siųsti ‪(Ctrl –Enter)‬']
+    Click Element  xpath://div[@aria-label='Siųsti ‪(Ctrl –Enter)‬']
+    #    [Teardown]  Close Browser
 
 *** Keywords ***
 open
@@ -71,11 +81,9 @@ type
 
 selectAndWait
     [Arguments]        ${element}  ${value}
-#    Select From List   ${element}  ${value}
     Select From List By Value    ${element}  ${value}
 select
     [Arguments]        ${element}  ${value}
-#    Select From List   ${element}  ${value}
     Select From List By Value    ${element}  ${value}
 verifyValue
     [Arguments]                  ${element}  ${value}
@@ -190,3 +198,14 @@ verifyAlert
 waitForPageToLoad
     [Arguments]   ${value}
     Sleep    ${value}
+
+storeText
+    [Arguments]  ${element}  ${variable}
+    ${temp}=  Get Text    ${element}
+    ${variable}=  Set Variable  ${temp}
+    [Return]  ${variable}
+
+store
+    [Arguments]  ${elem_minPrice}  ${var_price}
+    ${elem_minPrice}=  Set Variable  ${var_price}
+    [Return]  ${elem_minPrice}
