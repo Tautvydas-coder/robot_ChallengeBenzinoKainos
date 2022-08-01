@@ -13,6 +13,7 @@ ${minIndex}  9999
 ${PRICE}  0
 ${ADDRESS}
 ${EMAIL_NAME}  work.selenium@gmail.com
+${PASSWORD}  Selenium1]
 *** Test Cases ***
 robotframework-testing_selenium
     [Setup]  Run Keywords  Open Browser  http://www.degalukainos.lt/  ${BROWSER}
@@ -38,7 +39,7 @@ robotframework-testing_selenium
     click    xpath://div[@id='identifierNext']/div/button/span
     Sleep    3
     click    xpath:/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]
-    type    xpath://*[@id="password"]/div[1]/div/div[1]/input    Selenium1]
+    type    xpath://*[@id="password"]/div[1]/div/div[1]/input    ${PASSWORD}
     click    xpath://*[@id="passwordNext"]
     click    xpath:/html[1]/body[1]/div[7]/div[3]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]
     Sleep    2
