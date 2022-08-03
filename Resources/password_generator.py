@@ -1,6 +1,13 @@
 from random import choice, shuffle
+from robot.api.deco import keyword
+from robot.libraries.BuiltIn import BuiltIn
+from robot.libraries.BuiltIn import _Misc
+import robot.api.logger as logger
+
+ROBOT = True
 
 
+@keyword("RANDOM_PASSWORD")
 def generate_password():
     letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
                'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
@@ -19,8 +26,3 @@ def generate_password():
 
     password = "".join(password_list)
     return password
-
-
-print(generate_password())
-print(len(generate_password()))
-print(type(generate_password()))
