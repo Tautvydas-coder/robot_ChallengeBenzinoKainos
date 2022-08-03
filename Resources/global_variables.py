@@ -1,9 +1,9 @@
 # Browser
 BROWSER = "Firefox"
-FFOX_NEW_TAB = "about:newtab"
+NEW_TAB = "about:newtab"
 
-CHROME_BROWSER = "chrome"
-CHROME_NEW_TAB = "chrome://newtab/"
+# BROWSER = "chrome"
+# NEW_TAB = "chrome://newtab/"
 # Window
 MAX_WINDOW = "Maximize Browser Window"
 
