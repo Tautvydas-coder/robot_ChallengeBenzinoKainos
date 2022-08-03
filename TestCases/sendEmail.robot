@@ -20,7 +20,7 @@ robotframework-testing_selenium
     openNewTabGmailLogin
     loginToGmail
     click    ${CREATE_LETTER_BUTTON}
-    inputForwardToName
+    inputGmailAddress
     selectSearchBar
     inputLetterContent  @{minPrice_address}
     sendEmail
@@ -51,7 +51,7 @@ storeMinValue
     [Return]  ${element_min}
 
 fetchMinPriceAndAddress
-    [Documentation]  fetch, sorted minimal price and address
+    [Documentation]  fetch and sorted min price and address
     ${price}=  storeText    xpath=/html/body/div[1]/div[2]/div[2]/div/form/div/div[2]/table/tbody/tr[${index}]/td[5]    ${price}
     WHILE  "${price}"!="-"
         IF    ${price} < ${minValue}
@@ -84,7 +84,7 @@ loginToGmail
     type    ${BOX_LOGIN_PASSWORD}    ${PASSWORD}
     click    ${LOGIN_PASSWORD_BUTTON_NEXT}
 
-inputForwardToName
+inputGmailAddress
     click   ${EMAIL_TO_SEND_BOX}
     Press Keys  ${EMAIL_TO_SEND_BOX}  ${EMAIL_NAME}
 
