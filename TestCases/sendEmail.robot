@@ -1,11 +1,14 @@
-#TODO password sugeneruotas random 16digit, suvestu neteisinga elpasto pass, tada suvestu teisinga ir prisijungti viskas per python ir python koda (generavima slaptazodzio) priristi prie keyword robot
+#TODO suvestu neteisinga elpasto sugeneruota pass, tada suvestu teisinga ir prisijungti viskas per python ir python koda (generavima slaptazodzio) priristi prie keyword robot
 *** Settings ***
 Library  SeleniumLibrary
 Library  Collections
 Library  BuiltIn
+Library  ../Resources/password_generator.py
 Variables  ../Resources/global_variables.py
 Resource  ../Resources/configurations.robot
-Test Setup  StartBrowserAndMaximizeAndSpeed
+
+#Test Setup  StartBrowserAndMaximizeAndSpeed
+
 #Test Teardown  closeBrowserWindow
 *** Variables ***
 ${index}  2
@@ -15,15 +18,17 @@ ${price}  0
 ${address}
 *** Test Cases ***
 robotframework-testing_selenium
-    selectSpecificCityFuelStation
-    @{minPrice_address}=  fetchMinPriceAndAddress
-    openNewTabGmailLogin
-    loginToGmail
-    click    ${CREATE_LETTER_BUTTON}
-    inputGmailAddress
-    selectSearchBar
-    inputLetterContent  @{minPrice_address}
-    sendEmail
+     ${value}=  RANDOM_PASSWORD
+     Log To Console  ${value}
+#    selectSpecificCityFuelStation
+#    @{minPrice_address}=  fetchMinPriceAndAddress
+#    openNewTabGmailLogin
+#    loginToGmail
+#    click    ${CREATE_LETTER_BUTTON}
+#    inputGmailAddress
+#    selectSearchBar
+#    inputLetterContent  @{minPrice_address}
+#    sendEmail
 *** Keywords ***
 open
     [Arguments]    ${element}
