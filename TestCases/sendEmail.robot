@@ -1,3 +1,6 @@
+#TODO pataisyti, jog veiktu path, nes gmail pasikeite ir niekas neveikia, kai prisijungia
+#TODO password sugeneruotas random 16digit, suvestu neteisinga elpasto pass, tada suvestu teisinga ir prisijungti viskas per python ir python koda (generavima slaptazodzio) priristi prie keyword robot
+
 *** Settings ***
 Library  SeleniumLibrary
 Library  Collections

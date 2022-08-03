@@ -28,11 +28,11 @@ CITY = "Vilnius"
 EMAIL_NAME = "work.selenium@gmail.com"
 PASSWORD = "Selenium1]"
 
-# name and pass login pages box
+# Name and pass login pages box
 BOX_LOGIN_NAME = "id=identifierId"
 BOX_LOGIN_PASSWORD = 'xpath://*[@id="password"]/div[1]/div/div[1]/input'
 
-# move mouse
+# Move mouse
 DESELECT_EMAIL_NAME = "xpath:/html/body/div[7]/div[3]/div/div[1]/div[3]/header/div[2]/div[2]/div[2]"
 
 # Letter creation
