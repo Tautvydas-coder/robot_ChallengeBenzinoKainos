@@ -1,8 +1,5 @@
 from random import choice, shuffle
 from robot.api.deco import keyword
-from robot.libraries.BuiltIn import BuiltIn
-from robot.libraries.BuiltIn import _Misc
-import robot.api.logger as logger
 
 ROBOT = True
 
